@@ -3,11 +3,14 @@ import Header from "./Header.js";
 import Main from "./Main.js";
 import Footer from "./Footer.js";
 
-import PopupWithForm from "./PopupWithForm.js";
+import { Route } from 'react-router-dom';
+
 import ImagePopup from "./ImagePopup.js";
 import EditProfilePopup from "./EditProfilePopup.js";
 import EditAvatarPopup from "./EditAvatarPopup.js";
 import AddPlacePopup from "./AddPlacePopup.js";
+
+import EnterPage from "./EnterPage/EnterPage.js";
 
 import { useState, useEffect } from 'react';
 
@@ -95,44 +98,50 @@ function App() {
           <div className="body">
               <div className="page">
                 <Header />
-                
-                <Main 
-                  cards={currentCards}
-                  onAddPlace = {handleAddPlaceClick}
-                  onEditAvatar = {handleEditAvatarClick}
-                  onEditProfile = {handleEditProfileClick}
-                  onOpenFullSizeImage = {hanldeCardClick}
-                  onLikeClick={handleLikeCard}
-                  onDeleteButtonClick={handleDeleteCard}
-                />
+                  <Route exact path="/">
+                    
+                    <Main 
+                      cards={currentCards}
+                      onAddPlace = {handleAddPlaceClick}
+                      onEditAvatar = {handleEditAvatarClick}
+                      onEditProfile = {handleEditProfileClick}
+                      onOpenFullSizeImage = {hanldeCardClick}
+                      onLikeClick={handleLikeCard}
+                      onDeleteButtonClick={handleDeleteCard}
+                    />
+
+                    <ImagePopup
+                      url={selectedCard.url}
+                      name={selectedCard.name}
+                      isOpen={isPopupWithImageOpen}
+                      isClosed={closeAllPopups}
+                    />
+
+                    <AddPlacePopup
+                      isOpen={isPopupAddPlaceOpen}
+                      isClosed={closeAllPopups}
+                      onAddPlace={handleAddPlaceSubmit}
+                    />
+                    
+                    <EditProfilePopup 
+                      isOpen={isPopupEditProfileOpen} 
+                      onClose={closeAllPopups}
+                      onUpdateUser={handleUpdateUser}  
+                    />
+
+                    <EditAvatarPopup 
+                      isOpen={isPopupEditAvatarOpen}
+                      isClosed={closeAllPopups}
+                      editAvatar={handleUpdateAvatar}
+                    />
+
+                  </Route>
+
+                  <Route path='/enter'>
+                    <EnterPage />
+                  </Route>
 
                 <Footer />
-
-                <ImagePopup
-                  url={selectedCard.url}
-                  name={selectedCard.name}
-                  isOpen={isPopupWithImageOpen}
-                  isClosed={closeAllPopups}
-                />
-
-                <AddPlacePopup
-                  isOpen={isPopupAddPlaceOpen}
-                  isClosed={closeAllPopups}
-                  onAddPlace={handleAddPlaceSubmit}
-                />
-                
-                <EditProfilePopup 
-                  isOpen={isPopupEditProfileOpen} 
-                  onClose={closeAllPopups}
-                  onUpdateUser={handleUpdateUser}  
-                />
-
-                <EditAvatarPopup 
-                  isOpen={isPopupEditAvatarOpen}
-                  isClosed={closeAllPopups}
-                  editAvatar={handleUpdateAvatar}
-                />
-
               </div>
           </div>
     </CurrentUserContext.Provider>
