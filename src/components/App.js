@@ -10,7 +10,11 @@ import EditProfilePopup from "./EditProfilePopup.js";
 import EditAvatarPopup from "./EditAvatarPopup.js";
 import AddPlacePopup from "./AddPlacePopup.js";
 
-import EnterPage from "./EnterPage/EnterPage.js";
+import InfoTooltipSucess from "./InfoTooltipSucess/InfoTooltipSucess.js";
+import InfoTooltipFail from "./InfoTolltipFail/InfoTooltipFail.js";
+
+import Login from "./LogIn/Login.js";
+import Register from "./Register/Register";
 
 import { useState, useEffect } from 'react';
 
@@ -137,8 +141,20 @@ function App() {
 
                   </Route>
 
-                  <Route path='/enter'>
-                    <EnterPage />
+                  <Route path='/login'>
+                    <Login />
+                  </Route>
+
+                  <Route path='/register'>
+                    <Register />
+                  </Route>
+
+                  <Route path='/sucess'>
+                    <InfoTooltipSucess />  
+                  </Route>
+
+                  <Route path='/fail'>
+                    <InfoTooltipFail />  
                   </Route>
 
                 <Footer />
@@ -149,14 +165,3 @@ function App() {
 }
 
 export default App;
-
-/*
-Код попапа удаления карточки для дальнейшей работы:
-
-<PopupWithForm 
-                  name="delete-card" 
-                  popupTitle="Вы уверены?" 
-                  buttonText="Да">
-                  <div className="form form_confirm-deleting-card"  name="confirmDeletingCard"></div>
-</PopupWithForm>
-*/
