@@ -1,0 +1,32 @@
+/*Далее - дополнительные стили для компонента Header*/
+
+.header__info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: max-content;
+    height: max-content;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 400;
+}
+
+.header__user-email{
+    color: white;
+    margin-right:24px;
+}
+
+
+.header__link{
+    text-decoration: none;
+}
+
+.header__link_enter-page{
+    color: white;
+}
+
+.header__link_frontpage{
+    color: #A9A9A9;
+}

@@ -1,5 +1,5 @@
 import '../index.css';
-import Header from "./Header.js";
+import Header from "./Header/Header.js";
 import Main from "./Main.js";
 import Footer from "./Footer.js";
 
@@ -101,9 +101,14 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
           <div className="body">
               <div className="page">
-                <Header />
                   <Route exact path="/">
-                    
+                    <Header 
+                      userEmail="user@user.com"
+                      link="#"
+                      linkText="Выход"
+                      isFrontPage={true}
+                    />
+
                     <Main 
                       cards={currentCards}
                       onAddPlace = {handleAddPlaceClick}
@@ -142,10 +147,22 @@ function App() {
                   </Route>
 
                   <Route path='/login'>
+                  <Header 
+                      userEmail=''
+                      link="#"
+                      linkText="Регистрация"
+                      isFrontPage={false}
+                    />
                     <Login />
                   </Route>
 
                   <Route path='/register'>
+                    <Header 
+                      userEmail=''
+                      link="#"
+                      linkText="Вход"
+                      isFrontPage={false}
+                    />
                     <Register />
                   </Route>
 
