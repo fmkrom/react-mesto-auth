@@ -1,4 +1,60 @@
+/*Основные стили для компонента Header*/
+
+.header {
+    width: 882px;
+    height: 74px;
+    margin: 0 auto;
+        
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 40px;
+
+    border-bottom: 1px solid #545454;
+}
+
+@media screen and (max-width: 895px){
+    .header {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 324px){
+    .header {
+        width: 100%;
+    }
+}
+
+.header__vector {
+    width: max-content;
+    height: max-content;
+}
+
+@media screen and (max-width: 324px){
+    .header__vector {
+        width: 103.74px;
+        height: 24.4px;
+        margin-left:27px;
+    }
+}
+
+.header__logo {
+    width: 142.01px;
+    height: 33.4px;
+}
+
+@media screen and (max-width: 324px){
+    .header__logo {
+        width: 103.74px;
+        height: 24.4px;
+    }
+}
+
 /*Далее - дополнительные стили для компонента Header*/
+
+
 
 .header__info{
     display: flex;

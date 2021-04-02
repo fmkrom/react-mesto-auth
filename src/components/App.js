@@ -164,14 +164,20 @@ function App() {
                       isFrontPage={false}
                     />
                     <Register />
+                    <InfoTooltipSucess isOpen={false} />    
+                    <InfoTooltipFail isOpen={false} />  
                   </Route>
 
                   <Route path='/sucess'>
-                    <InfoTooltipSucess />  
+                    <InfoTooltipSucess 
+                      isOpen={true}
+                    />  
                   </Route>
 
                   <Route path='/fail'>
-                    <InfoTooltipFail />  
+                    <InfoTooltipFail 
+                      isOpen={true}
+                    />  
                   </Route>
 
                 <Footer />
@@ -182,3 +188,9 @@ function App() {
 }
 
 export default App;
+
+/*
+<meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>MESTO Russia</title>
+*/

@@ -1,10 +1,10 @@
 import InfoTooltip from '../InfoTooltip/InfoTooltip'
 import tooltipImageSucess from "../../images/__graphics/graphics__sucess.png"
 
-function InfoTooltipSucess(){
+function InfoTooltipSucess(props){
     return(
         <InfoTooltip
-            isOpen={true}
+            isOpen={props.isOpen}
             notificationImage={tooltipImageSucess}
             popupText='Вы успешно зарегистрировались!'
         />
