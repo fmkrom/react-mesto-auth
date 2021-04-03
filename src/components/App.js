@@ -3,7 +3,7 @@ import Header from "./Header/Header.js";
 import Main from "./Main.js";
 import Footer from "./Footer.js";
 
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 
 import ImagePopup from "./ImagePopup.js";
 import EditProfilePopup from "./EditProfilePopup.js";
@@ -32,6 +32,8 @@ function App() {
   
   const [isPopupWithImageOpen, handleCardImageClick]  = useState(false);
   const [selectedCard, setSelectedCard] = useState({url:"", name:""});
+
+  let isUserLoggedIn = false;
 
   useEffect(()=>{
     Promise.all([
@@ -97,11 +99,18 @@ function App() {
     closeAllPopups();
   }
 
+  //isUserLoggedIn = true;
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
           <div className="body">
               <div className="page">
-                  <Route exact path="/">
+
+                  <Route exaxt path="/">
+                    {isUserLoggedIn ? <Redirect to="/main" /> :  <Redirect to="/login" />}
+                  </Route>  
+
+                  <Route exact path="/main">
                     <Header 
                       userEmail="user@user.com"
                       link="#"

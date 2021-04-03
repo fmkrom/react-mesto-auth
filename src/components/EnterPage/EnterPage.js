@@ -11,7 +11,7 @@ function EnterPage(props){
                               {props.children}
                               <button className="enter-form__button-save" type="submit">{props.buttonText}</button>
                           </form>
-                          <span class="enter-form__subtitle">{props.formSubtitle}</span>
+                          <span className="enter-form__subtitle">{props.formSubtitle}</span>
                   </div>
               </div>
     </section>
