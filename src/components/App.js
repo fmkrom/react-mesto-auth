@@ -20,7 +20,7 @@ function App() {
               
               <ProtectedRoute
                 component={FrontPage}
-                path="/main"
+                path="/mesto"
                 loggedIn={isUserLoggedIn}
               />
 

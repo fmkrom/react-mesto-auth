@@ -13,7 +13,7 @@ function Login(){
         <div className="page__content">
             <Header 
                 userEmail=''
-                link="#"
+                link="/register"
                 linkText="Регистрация"
                 isFrontPage={false}
             />

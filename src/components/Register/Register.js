@@ -11,12 +11,13 @@ function handleSubmit(){
 }
 
 function Register(){
+        
     return (
     <div className="page__content">
         
         <Header 
         userEmail=''
-        link="#"
+        link="/login"
         linkText="Вход"
         isFrontPage={false}
         />    
