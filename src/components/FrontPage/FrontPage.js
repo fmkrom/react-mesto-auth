@@ -24,6 +24,8 @@ function FrontPage() {
   const [isPopupWithImageOpen, handleCardImageClick]  = useState(false);
   const [selectedCard, setSelectedCard] = useState({url:"", name:""});
 
+  
+  
   useEffect(()=>{
     Promise.all([
       api.getCards(),  
