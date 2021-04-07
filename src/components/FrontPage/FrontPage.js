@@ -88,29 +88,7 @@ function FrontPage() {
     closeAllPopups();
   }
 
-  
-  
-
-
-    let jwt = localStorage.getItem('jwt');
-    console.log('This is JWT:', jwt);
-
-    function checkToken(){
-      if (localStorage.getItem('jwt')) {
-        let jwt = localStorage.getItem('jwt');
-        console.log(jwt);
-        /*duckAuth.getContent(jwt).then(({ username, email }) => {
-          if (username) {
-            setLoggedIn(true)
-            setUserData({ username, email })
-          }
-        });*/
-      }
-    }
     
-    checkToken();
-  
-   //isUserLoggedIn = true;
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

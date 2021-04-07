@@ -1,9 +1,7 @@
 import '../../index.css';
 import '../EnterPage/EnterPage.css';
 
-import {useState} from 'react';
-
-//import currentAuthorizationApi from '../../utils/authorizationApi.js';
+import {useContext, useState} from 'react';
 
 import Header from '../Header/Header';
 import EnterPage from '../EnterPage/EnterPage';
@@ -14,6 +12,9 @@ function Register(props){
 
     const [registerUserName, setRegisterUserName] = useState('');
     const [registerUserEmail, setRegisterUserEmail] = useState('');
+
+    const [registrationSucesfull, setRegistrationSucesfull] = useState(false);
+    const [registrationFailed, setRegistrationFailed] = useState(false);
 
     function handleRegisterUserNameSubmit(e){
         setRegisterUserName(e.target.value);
@@ -27,7 +28,8 @@ function Register(props){
 
     function handleRegisterUserSubmit(e){
         e.preventDefault();
-        props.onRegisterUser(registerUserName, registerUserEmail)
+        props.onRegisterUser(registerUserName, registerUserEmail);
+        props.onRegisterUser ? setRegistrationSucesfull(true) : setRegistrationFailed(true);
     }
 
     return (
@@ -53,8 +55,8 @@ function Register(props){
         <span className="form-error form-error_hidden"></span>    
         </EnterPage>
 
-        <InfoTooltipSucess isOpen={false} />
-        <InfoTolltipFail isOpen={false} />  
+        <InfoTooltipSucess isOpen={registrationSucesfull} />
+        <InfoTolltipFail isOpen={registrationFailed} />  
 
     </div>
     )
