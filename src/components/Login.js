@@ -3,8 +3,8 @@ import './styles/EnterPage.css';
 
 import { useState } from 'react';
 
-import EnterPage from './EnterPage';
-import Header from './Header';
+import EnterPage from './EnterPage.js';
+import Header from './Header.js';
 
 function Login(props){
     
