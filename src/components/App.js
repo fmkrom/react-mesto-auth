@@ -3,17 +3,19 @@ import '../index.css';
 import React, { useEffect, useState } from 'react';
 import { Route, Switch, useHistory} from 'react-router-dom';
 
-import FrontPage from './FrontPage/FrontPage.js';
-import Footer from "./Footer.js";
+import Header from './Header';
+import Footer from "./Footer";
 
-import Login from "./LogIn/Login.js";
-import Register from "./Register/Register";
+import Login from "./Login.js";
+import Register from "./Register";
 
-import ProtectedRoute from './ProtectedRoute/ProtectedRoute.js';
+import ProtectedRoute from './ProtectedRoute';
 
-import * as authorization from '../utils/authorization.js';
+import * as authorization from '../utils/authorization';
 
 function App(){
+
+  
 
   const history = useHistory();
 

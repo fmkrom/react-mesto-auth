@@ -1,5 +1,5 @@
-import './Header.css'
-import mestoLogo from '../../images/__graphics/graphics__logo.png';
+import '../components/styles/Header.css';
+import mestoLogo from '../images/__graphics/graphics__logo.png';
 import { Link } from 'react-router-dom';
 
 function Header(props){

@@ -1,5 +1,5 @@
-import '../../index.css';
-import './EnterPage.css';
+import '../index.css';
+import '../components/styles/EnterPage.css';
 
 function EnterPage(props){
   return (

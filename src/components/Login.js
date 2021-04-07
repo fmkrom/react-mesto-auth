@@ -1,10 +1,10 @@
-import '../../index.css';
-import '../EnterPage/EnterPage.css';
+import '../index.css';
+import './styles/EnterPage.css';
 
 import { useState } from 'react';
 
-import EnterPage from '../EnterPage/EnterPage';
-import Header from '../Header/Header';
+import EnterPage from './EnterPage';
+import Header from './Header';
 
 function Login(props){
     

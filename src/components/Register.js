@@ -1,12 +1,12 @@
-import '../../index.css';
-import '../EnterPage/EnterPage.css';
+import '../index.css';
+import './styles/EnterPage.css';
 
-import {useContext, useState} from 'react';
+import {useState} from 'react';
 
-import Header from '../Header/Header';
-import EnterPage from '../EnterPage/EnterPage';
-import InfoTooltipSucess from '../InfoTooltipSucess/InfoTooltipSucess';
-import InfoTolltipFail from '../InfoTolltipFail/InfoTooltipFail';
+import Header from './Header.js';
+import EnterPage from './EnterPage.js';
+import InfoTooltipSucess from './InfoTooltipSucess.js';
+import InfoTolltipFail from './InfoTooltipFail.js';
 
 function Register(props){
 

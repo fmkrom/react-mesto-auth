@@ -1,5 +1,5 @@
-import InfoTooltip from '../InfoTooltip/InfoTooltip'
-import tooltipImageSucess from "../../images/__graphics/graphics__sucess.png"
+import InfoTooltip from './InfoTooltip'
+import tooltipImageSucess from "../images/__graphics/graphics__sucess.png"
 
 function InfoTooltipSucess(props){
     return(

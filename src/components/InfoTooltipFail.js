@@ -1,5 +1,5 @@
-import InfoTooltip from '../InfoTooltip/InfoTooltip'
-import tooltipImageFail from "../../images/__graphics/graphics__fail.png"
+import InfoTooltip from './InfoTooltip';
+import tooltipImageFail from "../images/__graphics/graphics__fail.png";
 
 function InfoTooltipFail(props){
     return(

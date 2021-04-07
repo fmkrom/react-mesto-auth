@@ -1,4 +1,4 @@
-import './InfoTooltip.css';
+import '../components/styles/InfoTooltip.css';
 
 function InfoTooltip(props){
 
