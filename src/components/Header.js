@@ -9,8 +9,6 @@ function Header(props){
   const linkText = `${currentPath === '/login' ? 'Регистрация' : 'Войти'}`;
   const redirectRoute = `${currentPath === '/login' ? '/register' : '/login'}`;
 
-  
-
   return (
       <div className="header">
               <div className="header__logo">
