@@ -6,9 +6,7 @@ import { useState } from 'react';
 import EnterPage from '../EnterPage/EnterPage';
 import Header from '../Header/Header';
 
-import apiUserLogIn from '../../utils/loginApi.js';
-
-function Login(){
+function Login(props){
     
     const [loginUserName, setLoginUserName] = useState('');
     const [loginUserEmail, setLoginUserEmail] = useState('');
@@ -25,11 +23,7 @@ function Login(){
 
     function handleLoginUserSubmit(e){
         e.preventDefault();
-        
-        apiUserLogIn(loginUserName, loginUserEmail)
-        .then((newUserData) =>{console.log(
-            'This is new user data in login: ', newUserData
-            )})
+        props.onLoginUser(loginUserName, loginUserEmail)       
     }
     
     
@@ -59,3 +53,24 @@ function Login(){
 }
 
 export default Login;
+
+/*
+const jwt = localStorage.getItem('jwt');
+console.log('This is user JWT in login:', jwt);
+
+localStorage.setItem('user', JSON.stringify({
+    name: 'Stas',
+    professtion: 'web dev'
+}));
+
+const user = localStorage.getItem('user');
+
+console.log(user);
+
+const storageLength = localStorage.length;
+console.log(storageLength);
+
+localStorage.removeItem('user');
+
+console.log(storageLength);
+*/

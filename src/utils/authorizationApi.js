@@ -1,6 +1,6 @@
 class authorizationApi {
-    constructor(settings){
-        this._url = settings.url;
+    constructor(){
+        this._url = 'https://auth.nomoreparties.co';
     }
 
     getRes(res){
@@ -36,10 +36,6 @@ class authorizationApi {
 
 };
 
-const authorizationApiSettings = {
-  url: "https://auth.nomoreparties.co",
-};
-
-const currentAuthorizationApi = new authorizationApi (authorizationApiSettings);
+const currentAuthorizationApi = new authorizationApi ();
 
 export default currentAuthorizationApi;

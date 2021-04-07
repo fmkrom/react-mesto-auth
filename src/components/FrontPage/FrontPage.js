@@ -24,8 +24,6 @@ function FrontPage() {
   const [isPopupWithImageOpen, handleCardImageClick]  = useState(false);
   const [selectedCard, setSelectedCard] = useState({url:"", name:""});
 
-  
-  
   useEffect(()=>{
     Promise.all([
       api.getCards(),  
@@ -90,13 +88,35 @@ function FrontPage() {
     closeAllPopups();
   }
 
-  //isUserLoggedIn = true;
+  
+  
+
+
+    let jwt = localStorage.getItem('jwt');
+    console.log('This is JWT:', jwt);
+
+    function checkToken(){
+      if (localStorage.getItem('jwt')) {
+        let jwt = localStorage.getItem('jwt');
+        console.log(jwt);
+        /*duckAuth.getContent(jwt).then(({ username, email }) => {
+          if (username) {
+            setLoggedIn(true)
+            setUserData({ username, email })
+          }
+        });*/
+      }
+    }
+    
+    checkToken();
+  
+   //isUserLoggedIn = true;
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
         <div className="page__content">        
                 <Header 
-                      userEmail="user@user.com"
+                      userEmail="user@user.com" //можно так: props.loggedInUserEmail
                       link="#"
                       linkText="Выход"
                       isFrontPage={true}
