@@ -36,6 +36,9 @@ function App(){
   const [isPopupWithImageOpen, handleCardImageClick]  = useState(false);
   const [selectedCard, setSelectedCard] = useState({url:"", name:""});
 
+  const [isPopupRegistrationSuccessfulOpen, setPopupRegistrationSuccessfulOpen] = useState(false);
+  const [isPopupRegistrationFailedOpen, setPopupRegistrationFailedOpen] = useState(false);
+
   const history = useHistory();
 
   useEffect(()=>{
@@ -76,6 +79,8 @@ function App(){
     handleAddPlaceClick(false);
     handleEditAvatarClick(false);
     handleCardImageClick(false);
+    setPopupRegistrationSuccessfulOpen(false);
+    setPopupRegistrationFailedOpen(false);
   }
 
   function handleAddPlaceSubmit(name, link){
@@ -118,9 +123,15 @@ function App(){
   function handleRegister(email, password){
       authorization.userRegister(email, password)
       .then((res) => {
-        if (!res || res.statusCode === 400) throw new Error('Ошибка регистрации');
-        console.log(res);
-        return res;
+        if (!res || res.statusCode === 400){ 
+          console.log(isPopupRegistrationFailedOpen);
+          console.log('Registration Failed');
+          setPopupRegistrationFailedOpen(true);
+          //throw new Error('Ошибка регистрации')
+        } else {
+          setPopupRegistrationSuccessfulOpen(true);
+          return res;
+        }
       }).catch((err)=>{console.log(err)})
   }
 
@@ -205,6 +216,9 @@ function App(){
                   />
                   <Register 
                     onRegisterUser={handleRegister}
+                    isClosed={closeAllPopups}
+                    registrationSuccessfulOpen={isPopupRegistrationSuccessfulOpen}
+                    registrationFailedOpen={isPopupRegistrationFailedOpen}
                   />
                 </Route>  
 

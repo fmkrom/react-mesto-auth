@@ -12,9 +12,6 @@ function Register(props){
     const [registerUserName, setRegisterUserName] = useState('');
     const [registerUserEmail, setRegisterUserEmail] = useState('');
 
-    const [registrationSucesfull, setRegistrationSucesfull] = useState(false);
-    const [registrationFailed, setRegistrationFailed] = useState(false);
-
     function handleRegisterUserNameSubmit(e){
         setRegisterUserName(e.target.value);
         //console.log(e.target.value);
@@ -28,7 +25,6 @@ function Register(props){
     function handleRegisterUserSubmit(e){
         e.preventDefault();
         props.onRegisterUser(registerUserName, registerUserEmail);
-        props.onRegisterUser ? setRegistrationSucesfull(true) : setRegistrationFailed(true);
     }
 
     return (
@@ -46,8 +42,15 @@ function Register(props){
         <span className="form-error form-error_hidden"></span>    
         </EnterPage>
 
-        <InfoTooltipSucess isOpen={registrationSucesfull} />
-        <InfoTolltipFail isOpen={registrationFailed} />  
+        <InfoTooltipSucess 
+            isOpen={props.registrationSuccessfulOpen} 
+            isClosed={props.isClosed}
+        />
+        
+        <InfoTolltipFail 
+            isOpen={props.registrationFailedOpen}
+            isClosed={props.isClosed}
+        />  
     </>
     )
 }

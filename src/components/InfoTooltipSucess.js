@@ -5,6 +5,7 @@ function InfoTooltipSucess(props){
     return(
         <InfoTooltip
             isOpen={props.isOpen}
+            isClosed={props.isClosed}
             notificationImage={tooltipImageSucess}
             popupText='Вы успешно зарегистрировались!'
         />

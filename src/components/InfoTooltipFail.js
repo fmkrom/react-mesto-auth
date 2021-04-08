@@ -5,6 +5,7 @@ function InfoTooltipFail(props){
     return(
         <InfoTooltip
             isOpen={props.isOpen}
+            isClosed={props.isClosed}
             notificationImage={tooltipImageFail}
             popupText='Что-то пошло не так! Попробуйте еще раз'
         />
