@@ -39,6 +39,19 @@ function App(){
   const [isPopupRegistrationSuccessfulOpen, setPopupRegistrationSuccessfulOpen] = useState(false);
   const [isPopupRegistrationFailedOpen, setPopupRegistrationFailedOpen] = useState(false);
 
+  const [currentUserEmail, setCurrentUserEmail] = useState('');
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    handleTokenCheck()
+  }, [])
+
+  /*useEffect(() => {
+    if (loggedIn) {
+      history.push("/main");
+    }
+  }, [loggedIn, history])*/
+
   const history = useHistory();
 
   useEffect(()=>{
@@ -107,19 +120,6 @@ function App(){
     closeAllPopups();
   }
 
-  const [currentUserEmail, setCurrentUserEmail] = useState('');
-  const [loggedIn, setLoggedIn] = useState(false);
-
-  useEffect(() => {
-    handleTokenCheck()
-  }, [])
-
-  useEffect(() => {
-    if (loggedIn) {
-      history.push("/main");
-    }
-  }, [loggedIn, history])
-
   function handleRegister(email, password){
       authorization.userRegister(email, password)
       .then((res) => {
@@ -174,7 +174,6 @@ function App(){
                   loggedIn={loggedIn}
 
                   headerUserEmail={currentUserEmail}
-                  isLoggedIn={loggedIn}
                   handleHeaderLink={handleLogOut}
 
                   component={Main}
@@ -188,7 +187,7 @@ function App(){
                 />
 
                 <Route path="/login">
-                <Header
+                  <Header
                      headerUserEmail=''
                      headerLinkRoute="/register"
                      headerLinkText="Регистрация"

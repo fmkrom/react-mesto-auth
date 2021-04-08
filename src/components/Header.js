@@ -11,7 +11,7 @@ function Header(props){
               </div>  
               <div className="header__info">
                 <p className="header__user-email">{props.headerUserEmail}</p>
-                <Link to={props.headerLinkRoute} onClick={props.handleHeaderLink} className={`header__link ${props.isLoggedIn ? "header__link_frontpage" : "header__link_enter-page"}`}>{props.headerLinkText}</Link>
+                <Link to={props.headerLinkRoute} onClick={props.handleHeaderLink} className={`header__link ${props.isLoggedIn ? "header__link_enter-page": "header__link_frontpage"}`}>{props.headerLinkText}</Link>
               </div>                  
       </div>
   )
