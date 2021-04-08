@@ -3,7 +3,6 @@ import './styles/EnterPage.css';
 
 import {useState} from 'react';
 
-import Header from './Header.js';
 import EnterPage from './EnterPage.js';
 import InfoTooltipSucess from './InfoTooltipSucess.js';
 import InfoTolltipFail from './InfoTooltipFail.js';
@@ -33,21 +32,13 @@ function Register(props){
     }
 
     return (
-    <div className="page__content">
-        
-        <Header 
-        userEmail=''
-        link="/"
-        linkText="Вход"
-        isFrontPage={false}
-        />    
-
+    <>
         <EnterPage
-        formTitle='Регистрация'
-        formName='form__register'
-        onSubmit={handleRegisterUserSubmit}
-        buttonText='Зарегистрироваться'
-        formSubtitle='Уже зарегистрированы? Войти'
+            formTitle='Регистрация'
+            formName='form__register'
+            onSubmit={handleRegisterUserSubmit}
+            buttonText='Зарегистрироваться'
+            formSubtitle='Уже зарегистрированы? Войти'
         >
         <input value={registerUserName} onChange={handleRegisterUserNameSubmit} required className="enter-form__field" placeholder="Email" type="email" minLength="2" maxlenght="40"/>
         <span className="form-error form-error_hidden"></span>
@@ -57,8 +48,7 @@ function Register(props){
 
         <InfoTooltipSucess isOpen={registrationSucesfull} />
         <InfoTolltipFail isOpen={registrationFailed} />  
-
-    </div>
+    </>
     )
 }
 

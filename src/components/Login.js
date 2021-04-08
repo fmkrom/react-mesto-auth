@@ -4,7 +4,6 @@ import './styles/EnterPage.css';
 import { useState } from 'react';
 
 import EnterPage from './EnterPage.js';
-import Header from './Header.js';
 
 function Login(props){
     
@@ -28,14 +27,6 @@ function Login(props){
     
     
     return (
-        <div className="page__content">
-            <Header 
-                userEmail=''
-                link="/register"
-                linkText="Регистрация"
-                isFrontPage={false}
-            />
-            
             <EnterPage
                 formTitle={'Вход'}
                 formName='form__login'
@@ -48,7 +39,6 @@ function Login(props){
                 <input value={loginUserEmail} onChange={handleloginUserEmailSubmit} required className="enter-form__field" placeholder="Пароль" type="text" minLength="2" maxlenght="200"/>
                 <span className="form-error form-error_hidden"></span>    
             </EnterPage>
-        </div>
     )
 }
 

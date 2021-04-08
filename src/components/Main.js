@@ -2,12 +2,22 @@ import {useContext} from 'react';
 
 import Card from "./Card.js";
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
+import Header from './Header.js';
 
 function Main(props){
     const currentUserData = useContext(CurrentUserContext);
         
     return(
-      <main className="main">
+      <>
+       <Header 
+        headerUserEmail={props.headerUserEmail}
+        headerLinkRoute="/login"
+        headerLinkText="Выход"
+        isLoggedIn={props.isLoggedIn}
+        handleHeaderLink={props.handleHeaderLink}
+       />
+
+        <main className="main">
             <section className="profile">
                 <div className="profile__avatar">
                     <button className="profile__edit-avatar-link" onClick={props.onEditAvatar}>
@@ -45,6 +55,7 @@ function Main(props){
           } 
           </section>
         </main>
+      </>
     )
 };
 

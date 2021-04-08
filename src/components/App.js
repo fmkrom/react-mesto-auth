@@ -1,12 +1,12 @@
 import '../index.css';
 
 import React, { useEffect, useState } from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory, } from 'react-router-dom';
 
 import Header from './Header';
 import Footer from "./Footer";
 
-import Login from "./Login.js";
+import Login from "./Login";
 import Register from "./Register";
 
 import Main from "./Main.js";
@@ -111,7 +111,7 @@ function App(){
 
   useEffect(() => {
     if (loggedIn) {
-      history.push("/");
+      history.push("/main");
     }
   }, [loggedIn])
 
@@ -131,7 +131,7 @@ function App(){
         //console.log('This is login result token:', res.token);
         if (res.token){
           localStorage.setItem('jwt', res.token)
-          history.push('/');
+          history.push('/main');
           return
         }
       }).catch((err)=>{console.log(err)});
@@ -152,6 +152,8 @@ function App(){
     if (localStorage.getItem('jwt')){
           localStorage.removeItem('jwt');
           console.log('logout sucesfull');
+        history.push('/login');
+        return
     }
   }
 
@@ -159,17 +161,16 @@ function App(){
     <CurrentUserContext.Provider value={currentUser}>
       <div className="body">
         <div className="page">
-              <Header 
-                userEmail={currentUserEmail}
-                isLoggedIn={loggedIn}
-                onLogout={handleLogOut}
-                onLink={console.log('On link!')}
-              />
+              
               <Switch>
-               
+
                 <ProtectedRoute
-                  path="/"
+                  path="/main"
                   loggedIn={loggedIn}
+
+                  headerUserEmail={currentUserEmail}
+                  isLoggedIn={loggedIn}
+                  handleHeaderLink={handleLogOut}
 
                   component={Main}
                   cards={currentCards}
@@ -182,16 +183,30 @@ function App(){
                 />
 
                 <Route path="/login">
+                <Header
+                     headerUserEmail=''
+                     headerLinkRoute="/register"
+                     headerLinkText="Регистрация"
+                     isLoggedIn={loggedIn}
+                     handleHeaderLink={null}
+                 />
                   <Login 
                     onLoginUser={handleLogin}
                   />
                 </Route>
 
                 <Route path="/register">
+                  <Header
+                    headerUserEmail=''
+                    headerLinkRoute="/login"
+                    headerLinkText="Войти"
+                    isLoggedIn={loggedIn}
+                    handleHeaderLink={null}
+                  />
                   <Register 
                     onRegisterUser={handleRegister}
                   />
-                </Route>    
+                </Route>  
 
               </Switch>
 
@@ -228,38 +243,3 @@ function App(){
 }
 
 export default App;
-
-/*
-const handleLogin = ({ username, password }) => {
-    return duckAuth.authorize(username, password)
-      .then((data) => {
-        if (!data) throw new Error('Неверные имя пользователя или пароль')
-        if (data.jwt) {
-          setLoggedIn(true)
-          localStorage.setItem('jwt', data.jwt)
-          history.push('/ducks')
-          return;
-        }
-      })
-  }
-
-  const handleRegister = ({ username, password, email }) => {
-    console.log({ username, password, email })
-    return duckAuth.register({ username, password, email }).then((res) => {
-      if (!res || res.statusCode === 400) throw new Error('Что-то пошло не так');
-      return res;
-    }).catch()
-  }
-
-  const tokenCheck = () => {
-    if (localStorage.getItem('jwt')) {
-      let jwt = localStorage.getItem('jwt');
-      duckAuth.getContent(jwt).then(({ username, email }) => {
-        if (username) {
-          setLoggedIn(true)
-          setUserData({ username, email })
-        }
-      });
-    }
-  }
-*/
