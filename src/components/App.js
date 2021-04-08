@@ -118,7 +118,7 @@ function App(){
     if (loggedIn) {
       history.push("/main");
     }
-  }, [loggedIn])
+  }, [loggedIn, history])
 
   function handleRegister(email, password){
       authorization.userRegister(email, password)
@@ -157,7 +157,6 @@ function App(){
   function handleLogOut(){
     if (localStorage.getItem('jwt')){
           localStorage.removeItem('jwt');
-          console.log('logout sucesfull');
         history.push('/login');
         return
     }
