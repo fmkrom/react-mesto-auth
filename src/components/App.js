@@ -123,23 +123,18 @@ function App(){
   function handleRegister(email, password){
       authorization.userRegister(email, password)
       .then((res) => {
-        if (!res || res.statusCode === 400){ 
-          console.log(isPopupRegistrationFailedOpen);
-          console.log('Registration Failed');
-          setPopupRegistrationFailedOpen(true);
-          //throw new Error('Ошибка регистрации')
-        } else {
-          setPopupRegistrationSuccessfulOpen(true);
-          return res;
-        }
-      }).catch((err)=>{console.log(err)})
+        setPopupRegistrationSuccessfulOpen(true);
+        return res;
+      }).catch((err)=>{
+        console.log('Ошибка при регистрации: ', err)
+        setPopupRegistrationFailedOpen(true);
+      })
   }
 
   function handleLogin(email, password){
       authorization.userLogin(email, password)
       .then((res)=>{
         if (!res || res.statusCode === 400) throw new Error('Неверные имя пользователя или пароль');
-        //console.log('This is login result token:', res.token);
         if (res.token){
           localStorage.setItem('jwt', res.token)
           history.push('/main');
