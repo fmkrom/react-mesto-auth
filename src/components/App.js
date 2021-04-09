@@ -45,17 +45,17 @@ function App(){
   const [currentUserEmail, setCurrentUserEmail] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
 
+  const history = useHistory();
+
   useEffect(() => {
     handleTokenCheck()
   }, [])
 
-  /*useEffect(() => {
+  useEffect(() => {
     if (loggedIn) {
       history.push("/main");
     }
-  }, [loggedIn, history])*/
-
-  const history = useHistory();
+  }, [loggedIn, history]);
 
   useEffect(()=>{
     Promise.all([
@@ -126,6 +126,8 @@ function App(){
       authorization.userRegister(email, password)
       .then((res) => {
         setPopupRegistrationSuccessfulOpen(true);
+        setLoggedIn(true);
+
         history.push('/login');
         return res;
       }).catch((err)=>{
@@ -143,6 +145,8 @@ function App(){
       .then((res)=>{
         if (res.token){
           localStorage.setItem('jwt', res.token)
+          setLoggedIn(true);
+          setCurrentUserEmail(email);
           history.push('/main');
           return
         }
@@ -154,7 +158,6 @@ function App(){
       let currentToken = localStorage.getItem('jwt');
       authorization.checkToken(currentToken)
       .then((currentUser)=>{
-          setLoggedIn(true)
           setCurrentUserEmail(currentUser.data.email);
       })
     }
@@ -163,7 +166,8 @@ function App(){
   function handleLogOut(){
     if (localStorage.getItem('jwt')){
           localStorage.removeItem('jwt');
-        history.push('/login');
+          setLoggedIn(false)
+          history.push('/login');
         return
     }
   }
