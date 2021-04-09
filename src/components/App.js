@@ -126,12 +126,17 @@ function App(){
       authorization.userRegister(email, password)
       .then((res) => {
         setPopupRegistrationSuccessfulOpen(true);
+        history.push('/login');
         return res;
       }).catch((err)=>{
         console.log('Ошибка при регистрации: ', err)
         setPopupRegistrationFailedOpen(true);
       })
   }
+
+  /*
+  newestuser1@newestuser.com
+  */
 
   function handleLogin(email, password){
       authorization.userLogin(email, password)
