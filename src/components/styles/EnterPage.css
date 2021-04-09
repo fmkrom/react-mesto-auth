@@ -117,4 +117,10 @@
 
 .enter-form__subtitle{
     text-align: center;
+    text-decoration: none;
+    color:white;
+}
+
+.enter-form__subtitle:hover{
+    opacity:0.8;
 }

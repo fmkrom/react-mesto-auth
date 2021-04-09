@@ -20,6 +20,9 @@ import EditProfilePopup from "./EditProfilePopup.js";
 import EditAvatarPopup from "./EditAvatarPopup.js";
 import AddPlacePopup from "./AddPlacePopup.js";
 
+import InfoTooltipSucess from './InfoTooltipSucess.js';
+import InfoTooltipFail from './InfoTooltipFail.js';
+
 import api from "../utils/api.js";
 
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
@@ -82,8 +85,7 @@ function App(){
   function handleDeleteCard(data){
     api.deleteCard(data.id)
     .then(()=>{
-      const cardsAfterDelete = currentCards.filter(card => !(card._id === data.id));
-      setCurrentCards(cardsAfterDelete);
+      setCurrentCards(currentCards.filter(card => !(card._id === data.id)))
     }).catch(err => console.log(err));
   }
 
@@ -100,8 +102,8 @@ function App(){
       api.addCard(name, link)
       .then((newCard)=>{
         setCurrentCards([newCard, ...currentCards])
+        closeAllPopups();
       }).catch(err => console.log(err))
-      closeAllPopups();
   }
 
   function handleUpdateUser(data){
@@ -134,13 +136,12 @@ function App(){
   function handleLogin(email, password){
       authorization.userLogin(email, password)
       .then((res)=>{
-        if (!res || res.statusCode === 400) throw new Error('Неверные имя пользователя или пароль');
         if (res.token){
           localStorage.setItem('jwt', res.token)
           history.push('/main');
           return
         }
-      }).catch((err)=>{console.log(err)});
+      }).catch((err)=>{console.log('Ошибка входа: ', err)});
   }
 
   function handleTokenCheck(){
@@ -210,8 +211,6 @@ function App(){
                   <Register 
                     onRegisterUser={handleRegister}
                     isClosed={closeAllPopups}
-                    registrationSuccessfulOpen={isPopupRegistrationSuccessfulOpen}
-                    registrationFailedOpen={isPopupRegistrationFailedOpen}
                   />
                 </Route>  
 
@@ -243,6 +242,16 @@ function App(){
                       isClosed={closeAllPopups}
                       editAvatar={handleUpdateAvatar}
               />
+
+              <InfoTooltipSucess 
+                  isOpen={isPopupRegistrationSuccessfulOpen} 
+                  isClosed={closeAllPopups}
+              />
+              
+              <InfoTooltipFail 
+                  isOpen={isPopupRegistrationFailedOpen}
+                  isClosed={closeAllPopups}
+              />  
         </div>
       </div>
     </CurrentUserContext.Provider>  

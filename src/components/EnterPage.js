@@ -1,6 +1,8 @@
 import '../index.css';
 import '../components/styles/EnterPage.css';
 
+import { Link } from 'react-router-dom';
+
 function EnterPage(props){
   return (
       <section className="enter-form">
@@ -11,7 +13,7 @@ function EnterPage(props){
                               {props.children}
                               <button className="enter-form__button-save" type="submit">{props.buttonText}</button>
                           </form>
-                          <span className="enter-form__subtitle">{props.formSubtitle}</span>
+                          <Link to={props.formSubtitleRoute} className="enter-form__subtitle">{props.formSubtitleText}</Link>
                   </div>
               </div>
     </section>
