@@ -126,7 +126,6 @@ function App(){
       authorization.userRegister(email, password)
       .then((res) => {
         setPopupRegistrationSuccessfulOpen(true);
-        setLoggedIn(true);
         history.push('/login');
         return res;
       }).catch((err)=>{
@@ -134,10 +133,6 @@ function App(){
         setPopupRegistrationFailedOpen(true);
       })
   }
-
-  /*
-  newestuser1@newestuser.com
-  */
 
   function handleLogin(email, password){
       authorization.userLogin(email, password)
@@ -157,18 +152,18 @@ function App(){
       let currentToken = localStorage.getItem('jwt');
       authorization.checkToken(currentToken)
       .then((currentUser)=>{
+          setLoggedIn(true);  
           setCurrentUserEmail(currentUser.data.email);
+          history.push('/');
       })
     }
   }
 
   function handleLogOut(){
-    if (localStorage.getItem('jwt')){
           localStorage.removeItem('jwt');
           setLoggedIn(false)
           history.push('/login');
         return
-    }
   }
 
   return (
