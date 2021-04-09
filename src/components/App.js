@@ -53,7 +53,7 @@ function App(){
 
   useEffect(() => {
     if (loggedIn) {
-      history.push("/main");
+      history.push("/");
     }
   }, [loggedIn, history]);
 
@@ -127,7 +127,6 @@ function App(){
       .then((res) => {
         setPopupRegistrationSuccessfulOpen(true);
         setLoggedIn(true);
-
         history.push('/login');
         return res;
       }).catch((err)=>{
@@ -147,7 +146,7 @@ function App(){
           localStorage.setItem('jwt', res.token)
           setLoggedIn(true);
           setCurrentUserEmail(email);
-          history.push('/main');
+          history.push('/');
           return
         }
       }).catch((err)=>{console.log('Ошибка входа: ', err)});
@@ -179,24 +178,7 @@ function App(){
               
               <Switch>
 
-                <ProtectedRoute
-                  path="/main"
-                  loggedIn={loggedIn}
-
-                  headerUserEmail={currentUserEmail}
-                  handleHeaderLink={handleLogOut}
-
-                  component={Main}
-                  cards={currentCards}
-                  onAddPlace = {handleAddPlaceClick}
-                  onEditAvatar = {handleEditAvatarClick}
-                  onEditProfile = {handleEditProfileClick}
-                  onOpenFullSizeImage = {hanldeCardClick}
-                  onLikeClick={handleLikeCard}
-                  onDeleteButtonClick={handleDeleteCard}
-                />
-
-                <Route path="/login">
+              <Route path="/login">
                   <Header
                      headerUserEmail=''
                      headerLinkRoute="/register"
@@ -222,6 +204,23 @@ function App(){
                     isClosed={closeAllPopups}
                   />
                 </Route>  
+
+                <ProtectedRoute
+                  path='/'
+                  loggedIn={loggedIn}
+
+                  headerUserEmail={currentUserEmail}
+                  handleHeaderLink={handleLogOut}
+
+                  component={Main}
+                  cards={currentCards}
+                  onAddPlace = {handleAddPlaceClick}
+                  onEditAvatar = {handleEditAvatarClick}
+                  onEditProfile = {handleEditProfileClick}
+                  onOpenFullSizeImage = {hanldeCardClick}
+                  onLikeClick={handleLikeCard}
+                  onDeleteButtonClick={handleDeleteCard}
+                />
 
               </Switch>
 
